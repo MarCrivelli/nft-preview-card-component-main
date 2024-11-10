@@ -16,42 +16,57 @@
     }
     body{
       background-color: #0d1a2d;
+      min-height: 100vh;
     }
     p{
       color: #738aa9;
     }
-    h1{
+    a{
+      text-decoration: none;
+      color: white;
+    }
+    .titulo{
       color: rgb(255, 255, 255);
       font-weight: 400;
       font-size: 27px;
     }
-    p, h1, h3, strong{
+    .titulo:hover{
+      cursor: pointer;
+      color: aqua;
+    }
+    p, .titulo, h3, strong, a{
       font-family: "Outfit", sans-serif;
       font-optical-sizing: auto;
       font-style: normal;
     }
     h3{
-      color: rgb(255, 255, 255);
+      color: aqua;
       font-weight: 400;
       font-size: 15px;
     }
     strong{
       color: white;
       font-weight: 200;
+      padding: 5px;
+    }
+    strong:hover{
+      cursor: pointer;
+      color: aqua;
+      
     }
     .alinhamentoCards{
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100vw;
-      height: 98vh;
+      height: 97vh;
       flex-wrap: wrap;
       gap: 40px;
     }
-    .a{
+    .containerCard{
       display: inline-flex;
       width: 380px;
-      border-top: 20px solid #0c192c;
+      background-color: #0b182b;
       border-right: 20px solid #0b182b;
       border-bottom: 44px solid #0b182b;
       border-left: 20px solid #0b182b;
@@ -63,20 +78,61 @@
       flex-direction: column;
       background-color: #14273e;
       width: 100%;
+      height: 100%;
       border-radius: 20px;
     }
     .divImagem{
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-block: 20px;
+      width: 100%;
+      height: 300px;
     }
     .imagem{
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 300px;
       height: 300px;
       border-radius: 14px;
-      margin-block: 20px;
+      transition: 0.5s ease-in-out;
+      background-image: url('images/image-equilibrium.jpg'); 
+      background-size: cover; 
+      background-position: center; 
+      background-repeat: no-repeat; 
+    }
+    .imagem::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      width: 300px;
+      height: 300px;
+      background-color: aqua; 
+      opacity: 0;
+      transition: 1s ease-in-out;
+      border-radius: 14px; 
+    }
+    .imagem:hover::before {
+      opacity: 0.5;
+      display: block; 
+    }
+    .imagem:hover{
+      cursor: pointer;
+      filter: brightness(1.0) hue-rotate(3deg) saturate(100%);
+    }
+    .imagem svg{
+      transition: 0.5s ease-in-out;
+      opacity: 0;
+    }
+    .imagem:hover svg{
+      opacity: 1;
+      filter: brightness(1.0) hue-rotate(0deg) saturate(100%);
     }
     .descricaoCard{
+      height: 100%;
       margin-inline: 30px;
       margin-bottom: 20px;
     }
@@ -119,10 +175,17 @@
       border-radius: 50%;
     }
     .attribution{
-      height: 2vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 3vh;
     }
 
     @media only screen and (max-width: 375px) {
+      .divImagem{
+        margin-top: 0px;
+      }
       .imagem {
         width: 90%;
         height: 90%;
@@ -155,19 +218,32 @@
       gap: 5px;
       padding-top: 5px;
     }
+  }
+  @media only screen and (max-width: 225px) {
+    .nick{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      padding-top: 10px;
+      gap: 20px;
     }
+  }
   </style>
 </head>
 <body>
 
   <div class="alinhamentoCards">
-    <div class="a">
+    <div class="containerCard">
       <div class="card">
         <div class="divImagem">
-          <img class="imagem" src="images/image-equilibrium.jpg" alt="Imagem do card">
+          <div class="imagem">
+            <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h48v48H0z"/><path d="M24 9C14 9 5.46 15.22 2 24c3.46 8.78 12 15 22 15 10.01 0 18.54-6.22 22-15-3.46-8.78-11.99-15-22-15Zm0 25c-5.52 0-10-4.48-10-10s4.48-10 10-10 10 4.48 10 10-4.48 10-10 10Zm0-16c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6Z" fill="#FFF" fill-rule="nonzero"/></g></svg>
+          </div>
         </div>
         <div class="descricaoCard">
-          <h1>Equilibrium #3429</h1>
+          <h1 class="titulo">Equilibrium #3429</h1>
           <p class="paragrafoDesc">Our Equilibrium collection promotes balance and calm.</p>
           <div class="informacoes">
             <div class="info1">
@@ -198,8 +274,12 @@
 
 
   <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    <p>
+      Challenge by 
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by 
+      <a href="#">Marco Antonio Prates Crivelli</a>.
+    </p>
   </div>
 </body>
 </html>
