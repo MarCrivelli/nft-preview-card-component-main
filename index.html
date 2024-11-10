@@ -3,58 +3,283 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Changa:wght@200..800&family=Cherry+Swash:wght@400;700&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Honk&family=Outfit:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Rubik+Wet+Paint&family=Tiny5&display=swap" rel="stylesheet">
   <title>Frontend Mentor | NFT preview card component</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+    *{
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    body{
+      background-color: #0d1a2d;
+      min-height: 100vh;
+    }
+    p{
+      color: #738aa9;
+    }
+    a{
+      text-decoration: none;
+      color: white;
+    }
+    .titulo{
+      color: rgb(255, 255, 255);
+      font-weight: 400;
+      font-size: 27px;
+    }
+    .titulo:hover{
+      cursor: pointer;
+      color: aqua;
+    }
+    p, .titulo, h3, strong, a{
+      font-family: "Outfit", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+    }
+    h3{
+      color: aqua;
+      font-weight: 400;
+      font-size: 15px;
+    }
+    strong{
+      color: white;
+      font-weight: 200;
+      padding: 5px;
+    }
+    strong:hover{
+      cursor: pointer;
+      color: aqua;
+      
+    }
+    .alinhamentoCards{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 97vh;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .containerCard{
+      display: inline-flex;
+      width: 380px;
+      background-color: #0b182b;
+      border-right: 20px solid #0b182b;
+      border-bottom: 44px solid #0b182b;
+      border-left: 20px solid #0b182b;
+      box-shadow: 0px 0px 0px 30px #0c192c;
+      border-radius: 20px;
+    }
+    .card{
+      display: flex;
+      flex-direction: column;
+      background-color: #14273e;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+    }
+    .divImagem{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-block: 20px;
+      width: 100%;
+      height: 300px;
+    }
+    .imagem{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 300px;
+      height: 300px;
+      border-radius: 14px;
+      transition: 0.5s ease-in-out;
+      background-image: url('images/image-equilibrium.jpg'); 
+      background-size: cover; 
+      background-position: center; 
+      background-repeat: no-repeat; 
+    }
+    .imagem::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      width: 300px;
+      height: 300px;
+      background-color: aqua; 
+      opacity: 0;
+      transition: 1s ease-in-out;
+      border-radius: 14px; 
+    }
+    .imagem:hover::before {
+      opacity: 0.5;
+      display: block; 
+    }
+    .imagem:hover{
+      cursor: pointer;
+      filter: brightness(1.0) hue-rotate(3deg) saturate(100%);
+    }
+    .imagem svg{
+      transition: 0.5s ease-in-out;
+      opacity: 0;
+    }
+    .imagem:hover svg{
+      opacity: 1;
+      filter: brightness(1.0) hue-rotate(0deg) saturate(100%);
+    }
+    .descricaoCard{
+      height: 100%;
+      margin-inline: 30px;
+      margin-bottom: 20px;
+    }
+    .paragrafoDesc{
+      margin-block: 10px;
+    }
+    .informacoes{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #738aa93a;
+    }
+    .info1{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex: 1 1 154px;
+      gap: 10px;
+    }
+    .info2{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      flex: 1 1 154px;
+      gap: 10px;
+    }
+    .nick{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-top: 10px;
+      gap: 20px;
+    }
+    .avatar{
+      width: 40px;
+      height: 40px;
+      border: 1px solid white;
+      border-radius: 50%;
+    }
+    .attribution{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 3vh;
+    }
+
+    @media only screen and (max-width: 375px) {
+      .divImagem{
+        margin-top: 0px;
+      }
+      .imagem {
+        width: 90%;
+        height: 90%;
+      }
+      .info1, .info2{
+        flex-direction: column;
+      }
+    }
+
+    @media only screen and (max-width: 225px) {
+      .informacoes{
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 10px;
+      }
+      .info1{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1 1 50px;
+      gap: 5px;
+      padding-top: 5px;
+    }
+    .info2{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      flex: 1 1 50px;
+      gap: 5px;
+      padding-top: 5px;
+    }
+  }
+  @media only screen and (max-width: 225px) {
+    .nick{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      padding-top: 10px;
+      gap: 20px;
+    }
+  }
   </style>
 </head>
 <body>
 
-  <div alinhamentoCards>
-    <div class="imagemCard">
-      <img src="images/image-equilibrium.jpg" alt="Imagem do card">
-    </div>
-    <div class="descricaoCard">
-      <h1>Equilibrium #3429</h1>
-      <p>Our Equilibrium collection promotes balance and calm.</p>
-      <div>
-        <div>
-          <svg width="11" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 10.216 5.5 18 0 10.216l5.5 3.263 5.5-3.262ZM5.5 0l5.496 9.169L5.5 12.43 0 9.17 5.5 0Z" fill="#00FFF8"/></svg>
-          0.041 ETH
+  <div class="alinhamentoCards">
+    <div class="containerCard">
+      <div class="card">
+        <div class="divImagem">
+          <div class="imagem">
+            <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h48v48H0z"/><path d="M24 9C14 9 5.46 15.22 2 24c3.46 8.78 12 15 22 15 10.01 0 18.54-6.22 22-15-3.46-8.78-11.99-15-22-15Zm0 25c-5.52 0-10-4.48-10-10s4.48-10 10-10 10 4.48 10 10-4.48 10-10 10Zm0-16c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6Z" fill="#FFF" fill-rule="nonzero"/></g></svg>
+          </div>
         </div>
-        <div>
-          <svg width="17" height="17" xmlns="http://www.w3.org/2000/svg"><path d="M8.305 2.007a6.667 6.667 0 1 0 0 13.334 6.667 6.667 0 0 0 0-13.334Zm2.667 7.334H8.305a.667.667 0 0 1-.667-.667V6.007a.667.667 0 0 1 1.334 0v2h2a.667.667 0 0 1 0 1.334Z" fill="#8BACD9"/></svg>
-          <p>3 days left</p>
+        <div class="descricaoCard">
+          <h1 class="titulo">Equilibrium #3429</h1>
+          <p class="paragrafoDesc">Our Equilibrium collection promotes balance and calm.</p>
+          <div class="informacoes">
+            <div class="info1">
+              <svg width="11" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 10.216 5.5 18 0 10.216l5.5 3.263 5.5-3.262ZM5.5 0l5.496 9.169L5.5 12.43 0 9.17 5.5 0Z" fill="#00FFF8"/></svg>
+              <h3>0.041 ETH</h3>
+            </div>
+            <div class="info2">
+              <svg width="17" height="17" xmlns="http://www.w3.org/2000/svg"><path d="M8.305 2.007a6.667 6.667 0 1 0 0 13.334 6.667 6.667 0 0 0 0-13.334Zm2.667 7.334H8.305a.667.667 0 0 1-.667-.667V6.007a.667.667 0 0 1 1.334 0v2h2a.667.667 0 0 1 0 1.334Z" fill="#8BACD9"/></svg>
+              <p>3 days left</p>
+            </div>
+          </div>
+          <div class="nick">
+            <img class="avatar" src="images/image-avatar.png" alt="Imagem de seu avatar">
+          <p>
+            Creation of 
+            <strong>
+              Jules Wyvern
+            </strong>
+          </p>
+          </div>
         </div>
-      </div>
-      <div class="nick">
-        <img src="images/image-avatar.png" alt="Imagem de seu avatar">
-       <p>
-        Creation of 
-        <strong>
-          Jules Wyvern
-        </strong>
-      </p>
       </div>
     </div>
   </div>
-
-
-  <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h48v48H0z"/><path d="M24 9C14 9 5.46 15.22 2 24c3.46 8.78 12 15 22 15 10.01 0 18.54-6.22 22-15-3.46-8.78-11.99-15-22-15Zm0 25c-5.52 0-10-4.48-10-10s4.48-10 10-10 10 4.48 10 10-4.48 10-10 10Zm0-16c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6Z" fill="red" fill-rule="nonzero"/></g></svg>
 
   
   
 
 
   <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    <p>
+      Challenge by 
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by 
+      <a href="https://github.com/MarCrivelli/nft-preview-card-component-main" target="_blank">Marco Antonio Prates Crivelli</a>.
+    </p>
   </div>
 </body>
 </html>
